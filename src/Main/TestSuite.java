@@ -5,7 +5,6 @@ import Testcases.Inittiation;
 
 public class TestSuite {
 	WebDriver driver;
-	//public static final Logger log = Logger.getLogger(TestSuite.class.getName());
 
 	public static void main(String[] args) {
 		TestSuite testSuite = new TestSuite();
