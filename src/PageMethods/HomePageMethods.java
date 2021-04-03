@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import UIElements.HomePageUIElements;
-import Utility.log;
 
 public class HomePageMethods {
 	WebDriver homePageMethodDriver;
@@ -26,9 +25,6 @@ public class HomePageMethods {
 	/*** In Hotel panel: select Hotel Name in the Search textbox ***/
 	public void inputLocation(String text) {
 		WebDriverWait wait = new WebDriverWait(homePageMethodDriver, timeout);
-		WebElement location;
-		WebElement LocationTxt;
-
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(obj.returnLocationtxt()));
 			obj.returnLocationtxt().click();
