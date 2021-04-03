@@ -6,10 +6,7 @@ public class log {
 
 // Initialize Log4j logs
 
-	private Logger Log = Logger.getLogger(log.class.getName());//
-
-	// This is to print log for the beginning of the test case, as we usually run so
-	// many test cases as a test suite
+	private Logger Log = Logger.getLogger(log.class.getName());
 
 	public void startTestCase(String sTestCaseName) {
 
