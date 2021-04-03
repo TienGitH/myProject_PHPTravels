@@ -2,8 +2,6 @@ package PageMethods;
 
 import java.util.List;
 
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -25,6 +23,7 @@ public class HomePageMethods {
 	/*** In Hotel panel: select Hotel Name in the Search textbox ***/
 	public void inputLocation(String text) {
 		WebDriverWait wait = new WebDriverWait(homePageMethodDriver, timeout);
+
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(obj.returnLocationtxt()));
 			obj.returnLocationtxt().click();
@@ -45,7 +44,6 @@ public class HomePageMethods {
 
 					if (e.getText().equalsIgnoreCase(text)) {
 						e.click();
-						// System.out.println("Text: " + text + " is selected successfully!");
 						break;
 					}
 				} catch (Exception ex) {
@@ -100,11 +98,7 @@ public class HomePageMethods {
 		WebDriverWait wait = new WebDriverWait(homePageMethodDriver, timeout);
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(obj.returnPlusChildrenbtn()));
-			//WebElement plusChild = homePageMethodDriver.findElement(obj.returnPlusChildrenbtn());
-			// String name = (String) ((JavascriptExecutor)
-			// homePageMethodDriver).executeScript("document.getElementsByName('children')[0].value;");
 			int defaultChild = Integer.parseInt(obj.returnChildrenValue().getAttribute("value"));
-			// System.out.print(defaultChild);
 			int totalChild = 0;
 			if (no > defaultChild) {
 				totalChild = no - defaultChild;

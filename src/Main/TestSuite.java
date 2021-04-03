@@ -13,11 +13,6 @@ public class TestSuite {
 	}
 
 	public void Init() {
-		/*String log4jConfPath = "log4j.properties";
-		PropertyConfigurator.configure(log4jConfPath);
-
-		log.info("Tien test!");
-		log.error("Error");*/
 		Inittiation init = new Inittiation();
 		driver = init.initDriver();
 		String url = "https://www.phptravels.net/home";
