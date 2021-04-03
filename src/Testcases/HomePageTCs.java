@@ -26,8 +26,6 @@ public class HomePageTCs {
 		System.out.println("Step 3: Input Check Out Date is 29/3/2021");
 		String checkoutdate = "29/3/2021";
 		homePageMethod.inputCheckOutDate(checkoutdate);
-		// homePageMethod.clickMinimizeLiveChat();
-		// homePageMethod.closeNeedHelp();
 		System.out.println("Step 4: Input the number of children is 2");
 		int totalChildren = 2;
 		homePageMethod.increaseChildren(totalChildren);
