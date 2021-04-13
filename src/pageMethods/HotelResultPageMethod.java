@@ -1,19 +1,20 @@
-package PageMethods;
+package pageMethods;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import UIElements.HotelResultPageUIElements;
+import framework.basedClass;
+import uiElements.HotelResultPageUIElements;
 
-public class HotelResultPageMethod {
+public class HotelResultPageMethod extends basedClass {
 	WebDriver driver;
 	int timeout = 50;
 	HotelResultPageUIElements obj;
 
-	public HotelResultPageMethod(WebDriver newdriver) {
-		this.driver = newdriver;		
+	public HotelResultPageMethod(WebDriver driver) {
+		super(driver);	
 		obj = new HotelResultPageUIElements(driver);
 	}
 
