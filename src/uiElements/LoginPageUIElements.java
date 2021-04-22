@@ -2,7 +2,7 @@ package uiElements;
 
 import org.openqa.selenium.WebDriver;
 
-public class loginPageUIElements {
+public class LoginPageUIElements {
 	WebDriver driver;
 	//By userName = 
 	
