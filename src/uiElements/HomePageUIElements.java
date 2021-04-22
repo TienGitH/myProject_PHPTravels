@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import testCases.Inittiation;
+import framework.WebDriverFactory;
 
 public class HomePageUIElements {
 	WebDriver driver;
-	Inittiation init;
+	WebDriverFactory init;
 	int timeout = 50;
+	
+	By account = By.id("dropdownCurrency");
 	By hotelTab = By.xpath("//a[@href='#hotels']");
 	By location = By.xpath("//a[@class='select2-choice']");
 	By inputLocation = By.xpath("//div[@id='select2-drop']//input");
@@ -27,9 +29,15 @@ public class HomePageUIElements {
 	By minimizeLiveChat = By.xpath(
 			"//div[@id='overlay_portal_container']/following-sibling::div//button[@aria-label='Minimize window']");
 	By closeNeedHelp = By.xpath("//div[@id='livechat-eye-catcher']/div");
+	By bookingPanel = By.xpath("//div[contains(@class,'menu-horizontal-wrapper-02')]");
 
 	public HomePageUIElements(WebDriver driver) {
 		this.driver = driver;
+	}
+	
+	public By bookingPanel() {
+
+		return bookingPanel;
 	}
 
 	public By hotelTab() {

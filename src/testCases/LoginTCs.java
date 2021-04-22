@@ -1,10 +1,10 @@
 package testCases;
 import org.openqa.selenium.WebDriver;
 
-public class loginTCs {
+public class LoginTCs {
 	WebDriver driver;
 	
-	public loginTCs(WebDriver driver) {
+	public LoginTCs(WebDriver driver) {
 		this.driver=driver;
 	}
 	

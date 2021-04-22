@@ -1,12 +1,12 @@
-package utility;
+package framework;
 
 import org.apache.log4j.Logger;
 
-public class log {
+public class Log {
 
 // Initialize Log4j logs
 
-	private Logger Log = Logger.getLogger(log.class.getName());
+	private Logger Log = Logger.getLogger(Log.class.getName());
 
 	public void startTestCase(String sTestCaseName) {
 

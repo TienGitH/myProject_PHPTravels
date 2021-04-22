@@ -1,92 +1,56 @@
 package pageMethods;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import framework.basedClass;
+import framework.BaseClass;
 import uiElements.HotelResultPageUIElements;
 
-public class HotelResultPageMethod extends basedClass {
+public class HotelResultPageMethod extends BaseClass {
 	WebDriver driver;
 	int timeout = 50;
-	HotelResultPageUIElements obj;
+	HotelResultPageUIElements hotelResultPageobj;
 
 	public HotelResultPageMethod(WebDriver driver) {
-		super(driver);	
-		obj = new HotelResultPageUIElements(driver);
+		super(driver);
+		hotelResultPageobj = new HotelResultPageUIElements(driver);
 	}
 
-	public WebElement getMsg() {
-		WebElement msg = driver.findElement(obj.getErrorMsg());
-		return msg;
-	}
-
-	public Boolean checkErrorExist() {
-		Boolean result;
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, timeout);
-			System.out.println("checking element");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(obj.getErrorMsg()));
-			result = getMsg().isDisplayed();
-		} catch (Exception e) {
-			result = false;
-			System.out.println("Error message does not display due to " + e);
-		}
-		return result;
+	/*** check if the error page exists ***/
+	public boolean checkErrorExist() {
+		return assertResultLocatorExist(hotelResultPageobj.errorMsg(), "Error message");
 	}
 
 	public void getErrorMessage(Boolean result) {
-		try {
-			if (result == true) {
-				System.out.println("No search result found! Reason is: " + getMsg().getText());
-				System.out.println("TC01 is passed testing!");
-			} else {
-				System.out.println("TC01 is failed testing!");
-			}
-		} catch (Exception e) {
-			System.out.println("Some unexpected error happens. TC01 is failed testing!" + e);
+		if (result == true) {
+			logger.info(
+					"Server is having problem as: " + getLocatorText(hotelResultPageobj.errorMsg(), "Error message"));
+			logger.info("TC01 is passed testing!");
+		} else {
+			logger.info("TC01 is failed testing!");
 		}
 	}
 
-	public Boolean checkSearchResultExist(String resultName) {
-		Boolean result;
-		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		try {
-			obj.setSearchResultName(resultName);
-			wait.until(ExpectedConditions.visibilityOf(obj.getSearchResultName()));
-			result = obj.getSearchResultName().isDisplayed();
-		} catch (Exception e) {
-			result = false;
-			System.out.println("The searched hotel is not found! Error: " + e);
-		}
-		return result;
-	}
-	
-	public String getTotalSearchResult()
-	{
-		String totalSearchResult="";
-		WebDriverWait wait = new WebDriverWait(driver,timeout);
-		try {
-			wait.until(ExpectedConditions.visibilityOf(obj.getTotalResult()));
-			totalSearchResult=obj.getTotalResult().getText();
-		}catch(Exception e) {
-			System.out.println("Cannot get the total of search result found due to " + e);
-		}
-		return totalSearchResult;
+	/*** check if search result exists ***/
+	public boolean checkSearchResultExist(String resultName) {
+		hotelResultPageobj.setSearchResultName(resultName);
+		return assertResultLocatorExist(hotelResultPageobj.searchResultName(), "Search result");
 	}
 
 	public void checkSearchResult(Boolean result) {
+		String totalResult = "";
 		try {
 			if (result == true) {
-				System.out.println(getTotalSearchResult());
-				System.out.println("TC01 is passed testing!");
+				if (assertResultLocatorExist(hotelResultPageobj.getTotalResult(), "Total Result") == true) {
+					totalResult = getLocatorText(hotelResultPageobj.getTotalResult(), "Total Result");
+					logger.info("There are " + totalResult);
+					logger.info("TC01 is passed testing!");
+				}
 			} else {
-				System.out.println("TC01 is failed testing!");
+				logger.info("There are " + totalResult);
+				logger.error("TC01 is failed testing!");
 			}
-		} catch (Exception e) {
-			System.out.println("Some unexpected error happens. TC01 is failed testing!" + e);
+		} catch (AssertionError e) {
+			logger.error("TC01 is failed testing! Due to: " + e);
 		}
 	}
 }
