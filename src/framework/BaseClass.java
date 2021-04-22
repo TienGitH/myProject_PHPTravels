@@ -14,7 +14,12 @@ import org.testng.Assert;
 
 import com.relevantcodes.extentreports.LogStatus;
 
-public class BaseClass extends WebDriverFactory{
+/***
+ * 
+ * @author Tien Nguyen
+ *
+ */
+public class BaseClass extends WebDriverFactory {
 	public static Logger logger = LogManager.getLogger(BaseClass.class.getName());
 	public WebDriver driver;
 	int timeout = 10;
@@ -165,10 +170,10 @@ public class BaseClass extends WebDriverFactory{
 	public void assertResultSelectValueInListBox(List<WebElement> listWebElement, String itemName) {
 		try {
 			Assert.assertEquals(selectValueInListBox(listWebElement, itemName), true);
-			} catch (AssertionError e) {
-				logger.error("Hotel Tab is failed cicking. Due to: " + e);
-				logReport.log(LogStatus.FAIL, "Hotel Tab is failed cicking");
-			}
+		} catch (AssertionError e) {
+			logger.error("Hotel Tab is failed cicking. Due to: " + e);
+			logReport.log(LogStatus.FAIL, "Hotel Tab is failed cicking");
+		}
 	}
 
 	/***
@@ -180,7 +185,8 @@ public class BaseClass extends WebDriverFactory{
 		try {
 			String locatorText = driver.findElement(locator).getText();
 			logger.info("Text from " + locatorName + " is: " + locatorText);
-			logReport.log(LogStatus.PASS, "Able to get the text: " + locatorText + " from " + locatorName + " successfully!");
+			logReport.log(LogStatus.PASS,
+					"Able to get the text: " + locatorText + " from " + locatorName + " successfully!");
 			return locatorText;
 		} catch (Exception e) {
 			logger.error("Unable to get text from " + locatorName + " .Due to: " + e);
@@ -207,7 +213,7 @@ public class BaseClass extends WebDriverFactory{
 			return false;
 		}
 	}
-	
+
 	/***
 	 * Assert if a locator is able to be sent text
 	 * 
@@ -246,12 +252,10 @@ public class BaseClass extends WebDriverFactory{
 			return false;
 		}
 	}
-	
+
 	public void assertIncreaseAdultsOrChild(By locator, String locatorName, int defaultChild, int times) {
 		try {
-			Assert.assertEquals(
-					increaseAdultsOrChild(locator, locatorName, defaultChild, times),
-					true);
+			Assert.assertEquals(increaseAdultsOrChild(locator, locatorName, defaultChild, times), true);
 		} catch (AssertionError e) {
 			logger.info("Unable to increate " + locatorName + ". Due to: " + e);
 			// test.log(LogStatus.FAIL, "Hotel Tab is failed cicking. Due to: " + e);
